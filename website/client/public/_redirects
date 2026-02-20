@@ -1,0 +1,5 @@
+# Serve /deck/ as static files (pitch deck HTML)
+/deck/*  /deck/:splat  200
+
+# SPA fallback — all other routes serve the React app
+/*  /index.html  200
