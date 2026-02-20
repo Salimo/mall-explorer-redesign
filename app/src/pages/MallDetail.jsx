@@ -59,16 +59,16 @@ export default function MallDetail() {
       {/* Hero */}
       <div className="relative h-[260px]">
         <img src={mall.image} alt={mall.name} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/30 to-black/5" />
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
           <Link href="/">
-            <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-secondary transition-colors">
+            <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center justify-center hover:bg-white transition-colors">
               <ArrowLeft className="w-5 h-5 text-foreground" />
             </div>
           </Link>
           {mall.status === 'live' && mall.mapUrl && (
             <Link href={`/map/${mall.id}`}>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-teal text-navy font-medium text-sm map-pulse">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-teal text-white font-medium text-sm map-pulse shadow-sm">
                 <Navigation className="w-4 h-4" />
                 Navigate
               </div>
@@ -76,10 +76,10 @@ export default function MallDetail() {
           )}
         </div>
         <div className="absolute bottom-4 left-4 right-4">
-          <h1 className="font-display text-2xl font-bold text-foreground">{mall.name}</h1>
-          <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-teal" />{mall.location}</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-teal" />{mall.openingHours}</span>
+          <h1 className="font-display text-2xl font-bold text-white">{mall.name}</h1>
+          <div className="flex items-center gap-4 mt-1 text-sm text-white/70">
+            <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-teal-light" />{mall.location}</span>
+            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-teal-light" />{mall.openingHours}</span>
           </div>
         </div>
       </div>
@@ -153,11 +153,11 @@ export default function MallDetail() {
 
           {/* Category Filters */}
           <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 mb-2">
-            <button onClick={() => setCategoryFilter('all')} className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${categoryFilter === 'all' ? 'bg-teal text-navy' : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'}`}>
+            <button onClick={() => setCategoryFilter('all')} className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${categoryFilter === 'all' ? 'bg-teal text-white' : 'bg-secondary text-muted-foreground hover:bg-secondary/80 border border-border'}`}>
               <Filter className="w-3 h-3" />All
             </button>
             {storeCategories.map(cat => (
-              <button key={cat} onClick={() => setCategoryFilter(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${categoryFilter === cat ? 'bg-teal text-navy' : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'}`}>
+              <button key={cat} onClick={() => setCategoryFilter(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${categoryFilter === cat ? 'bg-teal text-white' : 'bg-secondary text-muted-foreground hover:bg-secondary/80 border border-border'}`}>
                 {cat}
               </button>
             ))}
@@ -213,8 +213,8 @@ export default function MallDetail() {
                 <img src={mallEvents[0].image} alt={mallEvents[0].title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4">
-                  <h3 className="font-display font-bold text-foreground">{mallEvents[0].title}</h3>
-                  <span className="text-xs text-teal">{mallEvents[0].startDate} - {mallEvents[0].endDate}</span>
+                  <h3 className="font-display font-bold text-white">{mallEvents[0].title}</h3>
+                  <span className="text-xs text-teal-light">{mallEvents[0].startDate} - {mallEvents[0].endDate}</span>
                 </div>
               </div>
             </div>

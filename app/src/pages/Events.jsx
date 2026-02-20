@@ -21,7 +21,7 @@ export default function Events() {
 
       <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 mt-4 mb-4">
         {EVENT_CATEGORIES.map(cat => (
-          <button key={cat} onClick={() => setCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${category === cat ? 'bg-teal text-navy' : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'}`}>
+          <button key={cat} onClick={() => setCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${category === cat ? 'bg-teal text-white' : 'bg-secondary text-muted-foreground hover:bg-secondary/80 border border-border'}`}>
             {cat}
           </button>
         ))}
@@ -42,7 +42,7 @@ export default function Events() {
                   <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute top-3 left-3">
-                    <span className="text-[10px] px-2 py-1 rounded-full bg-teal/90 text-navy font-semibold">{event.category}</span>
+                    <span className="text-[10px] px-2 py-1 rounded-full bg-teal text-white font-semibold">{event.category}</span>
                   </div>
                 </div>
                 <div className="p-5">

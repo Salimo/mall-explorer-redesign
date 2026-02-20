@@ -25,7 +25,7 @@ function AppContent() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-teal mb-4">
-            <span className="text-navy font-display font-bold text-xl">M</span>
+            <span className="text-white font-display font-bold text-xl">M</span>
           </div>
           <h1 className="text-foreground text-xl font-bold font-display">Mall Explorer</h1>
           <div className="w-6 h-6 border-2 border-foreground/30 border-t-teal rounded-full animate-spin mx-auto mt-4" />

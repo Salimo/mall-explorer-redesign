@@ -101,8 +101,8 @@ export default function ProfileSetupView() {
             </button>
           </div>
 
-          <button onClick={handleSave} disabled={!name || loading} className="w-full py-3.5 bg-teal text-navy font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]">
-            {loading ? <div className="w-5 h-5 border-2 border-navy/30 border-t-navy rounded-full animate-spin mx-auto" /> : 'Get Started'}
+          <button onClick={handleSave} disabled={!name || loading} className="w-full py-3.5 bg-teal text-white font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]">
+            {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto" /> : 'Get Started'}
           </button>
         </div>
       </div>

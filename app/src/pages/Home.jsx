@@ -28,16 +28,16 @@ export default function Home() {
       {/* Hero */}
       <div className="relative h-[320px] sm:h-[380px] overflow-hidden">
         <img src={IMAGE_URLS.hero} alt="Mall interior" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/15 border border-teal/30 mb-3">
             <div className="w-2 h-2 rounded-full bg-teal animate-pulse" />
             <span className="text-teal text-xs font-medium">Abu Dhabi Mall is now live</span>
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
-            Explore malls<br /><span className="gradient-text">like never before</span>
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-white">
+            Explore malls<br /><span className="text-teal-light">like never before</span>
           </h1>
-          <p className="text-muted-foreground text-sm mt-2 max-w-md">Discover events, shops, and deals. Find the store you're looking for with indoor navigation.</p>
+          <p className="text-white/70 text-sm mt-2 max-w-md">Discover events, shops, and deals. Find the store you're looking for with indoor navigation.</p>
         </motion.div>
       </div>
 
@@ -62,9 +62,9 @@ export default function Home() {
                     </div>
                     <div className="absolute top-3 right-3">
                       {mall.status === 'live' ? (
-                        <span className="text-[10px] px-2 py-1 rounded-full bg-teal/90 text-navy font-semibold">Live</span>
+                        <span className="text-[10px] px-2 py-1 rounded-full bg-teal text-white font-semibold">Live</span>
                       ) : (
-                        <span className="text-[10px] px-2 py-1 rounded-full bg-white/20 text-white/90 font-medium backdrop-blur-sm">Coming Soon</span>
+                        <span className="text-[10px] px-2 py-1 rounded-full bg-black/30 text-white/90 font-medium backdrop-blur-sm">Coming Soon</span>
                       )}
                     </div>
                   </div>
@@ -170,13 +170,13 @@ export default function Home() {
                 <div className="rounded-2xl overflow-hidden glass-card group">
                   <div className="relative h-[200px] overflow-hidden">
                     <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-5">
                       <h3 className="font-display text-lg font-bold text-white">{event.title}</h3>
                       <p className="text-sm text-white/70 line-clamp-2 mt-1">{event.description}</p>
                       <div className="flex items-center justify-between mt-3">
-                        <span className="text-xs text-teal">{event.startDate} - {event.endDate}</span>
-                        <span className="text-xs text-teal font-medium flex items-center gap-1">Explore Now <ChevronRight className="w-3 h-3" /></span>
+                        <span className="text-xs text-teal-light">{event.startDate} - {event.endDate}</span>
+                        <span className="text-xs text-teal-light font-medium flex items-center gap-1">Explore Now <ChevronRight className="w-3 h-3" /></span>
                       </div>
                     </div>
                   </div>

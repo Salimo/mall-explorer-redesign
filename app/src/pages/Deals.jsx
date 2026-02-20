@@ -28,7 +28,7 @@ export default function Deals() {
 
       <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 mt-4 mb-4">
         {DEAL_CATEGORIES.map(cat => (
-          <button key={cat.id} onClick={() => setCategory(cat.id)} className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${category === cat.id ? 'bg-teal text-navy' : 'bg-secondary/60 text-muted-foreground hover:bg-secondary'}`}>
+          <button key={cat.id} onClick={() => setCategory(cat.id)} className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${category === cat.id ? 'bg-teal text-white' : 'bg-secondary text-muted-foreground hover:bg-secondary/80 border border-border'}`}>
             <span>{cat.icon}</span>{cat.name}
           </button>
         ))}
