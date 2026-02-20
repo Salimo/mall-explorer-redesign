@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mall Explorer — Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #00D9B1;
+    --primary-dark: #00C4A0;
+    --dark: #0F172A;
+    --dark-2: #1E293B;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-500: #64748B;
+    --card-bg: rgba(255,255,255,0.05);
+    --card-border: rgba(0,217,177,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; background: var(--dark); }
+
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(40px);
+    padding: 60px 80px;
+  }
+  .slide.active { opacity: 1; visibility: visible; transform: translateX(0); }
+  .slide.prev { transform: translateX(-40px); }
+
+  h1 { color: #fff; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  h1 .accent { color: var(--primary); }
+  h3 { color: #fff; font-size: 1.15rem; font-weight: 600; }
+  p { color: var(--gray-400); font-size: 1rem; line-height: 1.6; }
+  .label { color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; }
+  .subtitle { color: var(--gray-300); font-size: 1.2rem; line-height: 1.6; max-width: 600px; }
+  .subtitle-center { color: var(--gray-300); font-size: 1.15rem; line-height: 1.6; max-width: 680px; margin: 0 auto; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 40px; }
+
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 16px; padding: 28px;
+  }
+  .card .icon { font-size: 2rem; margin-bottom: 14px; }
+  .card h3 { margin-bottom: 8px; }
+  .card p { font-size: 0.9rem; }
+
+  .feature-row { display: flex; align-items: flex-start; gap: 16px; }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(0,217,177,0.12); display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .feature-row h3 { margin-bottom: 4px; }
+  .feature-row p { font-size: 0.9rem; }
+
+  .stat { text-align: center; }
+  .stat .num { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+  .stat p { font-size: 1rem; }
+
+  .logo-box {
+    width: 80px; height: 80px; border-radius: 20px; background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+  }
+  .logo-box span { font-size: 2.2rem; font-weight: 800; color: var(--dark); }
+
+  .step-circle {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 1.4rem; font-weight: 700; color: var(--dark);
+  }
+
+  .cta-btn {
+    display: inline-block; background: var(--primary); color: var(--dark);
+    font-size: 1.15rem; font-weight: 700; padding: 16px 36px; border-radius: 14px;
+    text-decoration: none; margin-top: 20px;
+  }
+
+  .mall-chip {
+    background: var(--card-bg); border: 1px solid rgba(0,217,177,0.15);
+    border-radius: 12px; padding: 16px 20px; text-align: center;
+  }
+  .mall-chip .name { color: #fff; font-weight: 600; font-size: 1rem; }
+  .mall-chip .status { font-size: 0.8rem; margin-top: 4px; }
+  .mall-chip .live { color: var(--primary); }
+  .mall-chip .soon { color: var(--gray-500); }
+
+  .contact-row { display: flex; gap: 48px; justify-content: center; margin-top: 40px; }
+  .contact-item { text-align: center; }
+  .contact-item .lbl { color: var(--gray-500); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 4px; }
+  .contact-item .val { color: #fff; font-weight: 600; font-size: 1rem; }
+
+  /* Navigation */
+  .nav { position: fixed; bottom: 32px; right: 40px; display: flex; gap: 12px; z-index: 100; }
+  .nav button {
+    width: 48px; height: 48px; border-radius: 12px; border: 1px solid rgba(0,217,177,0.3);
+    background: rgba(15,23,42,0.9); color: var(--primary); font-size: 1.2rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px); transition: all 0.2s;
+  }
+  .nav button:hover { background: var(--primary); color: var(--dark); }
+
+  .progress {
+    position: fixed; bottom: 0; left: 0; height: 3px; background: var(--primary);
+    transition: width 0.4s ease; z-index: 100;
+  }
+
+  .slide-counter {
+    position: fixed; bottom: 36px; left: 40px; color: var(--gray-500);
+    font-size: 0.85rem; font-weight: 500; z-index: 100;
+  }
+
+  .full { width: 100%; }
+  .text-center { text-align: center; }
+
+  .split-layout { display: flex; align-items: center; gap: 48px; width: 100%; }
+  .split-left { flex: 1; min-width: 0; }
+  .split-right { flex-shrink: 0; display: flex; justify-content: center; }
+
+  .phone-frame {
+    width: 220px; height: 440px;
+    border-radius: 32px;
+    border: 4px solid rgba(255,255,255,0.15);
+    background: #000;
+    padding: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px; border-radius: 12px;
+    background: #000; z-index: 2;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .phone-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    border-radius: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .slide { padding: 32px 28px; }
+    h1 { font-size: 2rem; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .contact-row { flex-direction: column; gap: 20px; }
+    .stat .num { font-size: 2.4rem; }
+    .split-layout { flex-direction: column; }
+    .phone-frame { width: 180px; height: 360px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide active" data-slide="0">
+    <div class="text-center">
+      <div class="logo-box"><span>m</span></div>
+      <h1>Mall Explorer</h1>
+      <p class="subtitle-center" style="color: var(--primary); font-size: 1.4rem; font-weight: 500; margin-bottom: 8px;">
+        A unified platform for mall shoppers in Abu Dhabi
+      </p>
+      <p style="color: var(--gray-500); font-size: 1.1rem; margin-top: 20px;">Navigation in your pocket.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: The Data -->
+  <div class="slide" data-slide="1">
+    <div class="full text-center">
+      <div class="label">The Reality</div>
+      <h1>Shoppers walk in <span class="accent">ready to buy</span> — and leave empty-handed</h1>
+      <div class="grid-3" style="max-width: 800px; margin: 40px auto 0;">
+        <div class="stat">
+          <div class="num">96%</div>
+          <p>of shoppers have left a store without purchasing at least once</p>
+        </div>
+        <div class="stat">
+          <div class="num">67%</div>
+          <p>couldn't find the product or store they were looking for</p>
+        </div>
+        <div class="stat">
+          <div class="num">90%</div>
+          <p>would have bought if they got the help they needed</p>
+        </div>
+      </div>
+      <p style="color: var(--gray-500); font-size: 0.85rem; margin-top: 36px; max-width: 640px; margin-left: auto; margin-right: auto;">Sources: Retail TouchPoints / TimeTrade consumer studies</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Problem -->
+  <div class="slide" data-slide="2">
+    <div class="full">
+      <div class="label">The Problem</div>
+      <h1>Malls leave shoppers <span class="accent">in the dark</span></h1>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">🧭</div>
+          <h3>Hard to Navigate</h3>
+          <p>Large multi-floor malls disorient residents and tourists alike — and nobody wants to queue at a shared kiosk</p>
+        </div>
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>No Idea What's Happening</h3>
+          <p>Sales, seasonal events, and entertainment — shoppers miss out because there's no easy way to discover what's on</p>
+        </div>
+        <div class="card">
+          <div class="icon">🏪</div>
+          <h3>New Stores Go Unnoticed</h3>
+          <p>Brands invest in new openings but most mall visitors walk right past them — with no channel to spread the word</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Solution -->
+  <div class="slide" data-slide="3">
+    <div class="split-layout">
+      <div class="split-left">
+        <div class="label">The Solution</div>
+        <h1>Your mall, <span class="accent">in your pocket</span></h1>
+        <p class="subtitle">A web app that brings convenience into every mall visit — no downloads, no kiosks, no hassle.</p>
+        <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 32px;">
+          <div class="feature-row">
+            <div class="feature-icon">📍</div>
+            <div>
+              <h3>Indoor Navigation</h3>
+              <p>Turn-by-turn directions inside the mall, right from your phone's browser</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">🎉</div>
+            <div>
+              <h3>Events & What's New</h3>
+              <p>Stay updated on mall events, sales, and new store openings in real time</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">🏬</div>
+            <div>
+              <h3>Store Directory</h3>
+              <p>Browse every store, restaurant, and service across all partner malls</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">📱</div>
+            <div>
+              <h3>No App Download</h3>
+              <p>Works instantly in the browser — scan a QR code and start exploring</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split-right">
+        <div class="phone-frame">
+          <img src="nav-map.png" alt="Mall Explorer indoor navigation map">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Traction -->
+  <div class="slide" data-slide="4">
+    <div class="full text-center">
+      <div class="label">Traction</div>
+      <h1>Growing across <span class="accent">Abu Dhabi</span></h1>
+      <div class="grid-3" style="max-width: 700px; margin: 40px auto 0;">
+        <div class="stat">
+          <div class="num">4</div>
+          <p>Partner Malls</p>
+        </div>
+        <div class="stat">
+          <div class="num">1,000+</div>
+          <p>Stores Listed</p>
+        </div>
+        <div class="stat">
+          <div class="num">0</div>
+          <p>Beacons Required</p>
+        </div>
+      </div>
+      <div class="grid-3" style="max-width: 700px; margin: 36px auto 0;">
+        <div class="mall-chip">
+          <div class="name">Abu Dhabi Mall</div>
+          <div class="status live">● Live</div>
+        </div>
+        <div class="mall-chip">
+          <div class="name">Yas Mall</div>
+          <div class="status soon">Coming Soon</div>
+        </div>
+        <div class="mall-chip">
+          <div class="name">The Galleria</div>
+          <div class="status soon">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: How It Works -->
+  <div class="slide" data-slide="5">
+    <div class="full text-center">
+      <div class="label">How It Works</div>
+      <h1>Three steps to <span class="accent">effortless navigation</span></h1>
+      <div class="grid-3" style="max-width: 800px; margin: 40px auto 0;">
+        <div>
+          <div class="step-circle">1</div>
+          <h3>Scan the QR Code</h3>
+          <p style="margin-top: 8px;">Available at mall entrances — opens instantly in your browser</p>
+        </div>
+        <div>
+          <div class="step-circle">2</div>
+          <h3>Search & Discover</h3>
+          <p style="margin-top: 8px;">Find stores, browse events, or search across every floor</p>
+        </div>
+        <div>
+          <div class="step-circle">3</div>
+          <h3>Navigate There</h3>
+          <p style="margin-top: 8px;">Get indoor directions on your phone — no beacons needed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: For Brands -->
+  <div class="slide" data-slide="6">
+    <div class="full text-center">
+      <div class="label">For Brands & Mall Operators</div>
+      <h1>Want to be visible <span class="accent">to every shopper?</span></h1>
+      <p class="subtitle-center" style="margin-bottom: 12px;">Reach thousands of mall visitors through featured listings, event promotions, and new store announcements.</p>
+      <div class="grid-3" style="max-width: 800px; margin: 32px auto 0;">
+        <div class="card" style="text-align: center;">
+          <div class="icon">📢</div>
+          <h3>Promote Events</h3>
+          <p>Push events and sales directly to shoppers' phones</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="icon">🏷️</div>
+          <h3>Featured Listings</h3>
+          <p>Highlight your brand at the top of the directory</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="icon">📊</div>
+          <h3>Visitor Insights</h3>
+          <p>Understand foot traffic and shopper behaviour</p>
+        </div>
+      </div>
+      <a class="cta-btn" href="mailto:info@mall-explorer.com">Get in Touch →</a>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Closing -->
+  <div class="slide" data-slide="7">
+    <div class="text-center">
+      <div class="logo-box"><span>m</span></div>
+      <h1>Mall Explorer</h1>
+      <p style="color: var(--primary); font-size: 1.5rem; font-weight: 500; margin-bottom: 8px;">
+        Explore malls like never before.
+      </p>
+      <div class="contact-row">
+        <div class="contact-item">
+          <div class="lbl">Website</div>
+          <div class="val">mall-explorer.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="lbl">Location</div>
+          <div class="val">Abu Dhabi, UAE</div>
+        </div>
+        <div class="contact-item">
+          <div class="lbl">Contact</div>
+          <div class="val">info@mall-explorer.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="slide-counter" id="counter">1 / 8</div>
+<div class="nav">
+  <button onclick="go(-1)" aria-label="Previous">←</button>
+  <button onclick="go(1)" aria-label="Next">→</button>
+</div>
+<div class="progress" id="progress"></div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+
+  function show(index) {
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'prev');
+      if (i === index) s.classList.add('active');
+      else if (i < index) s.classList.add('prev');
+    });
+    document.getElementById('counter').textContent = `${index + 1} / ${total}`;
+    document.getElementById('progress').style.width = `${((index + 1) / total) * 100}%`;
+  }
+
+  function go(dir) {
+    current = Math.max(0, Math.min(total - 1, current + dir));
+    show(current);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    if (e.key === 'Home') { current = 0; show(current); }
+    if (e.key === 'End') { current = total - 1; show(current); }
+  });
+
+  // Touch/swipe support
+  let touchX = 0;
+  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX);
+  document.addEventListener('touchend', e => {
+    const diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) go(diff > 0 ? 1 : -1);
+  });
+
+  show(0);
+</script>
+</body>
+</html>
