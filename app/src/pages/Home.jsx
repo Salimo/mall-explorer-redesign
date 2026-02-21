@@ -28,16 +28,16 @@ export default function Home() {
       {/* Hero */}
       <div className="relative h-[320px] sm:h-[380px] overflow-hidden">
         <img src={IMAGE_URLS.hero} alt="Mall interior" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/15 border border-teal/30 mb-3">
-            <div className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-            <span className="text-teal text-xs font-medium">Abu Dhabi Mall is now live</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" style={{ height: '100%' }} />
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-[2]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2BB57D] shadow-[0_2px_8px_rgba(0,0,0,0.3)] mb-3">
+            <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-white text-xs font-bold tracking-wide">Abu Dhabi Mall is now live</span>
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-white">
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             Explore malls<br /><span className="text-teal-light">like never before</span>
           </h1>
-          <p className="text-white/70 text-sm mt-2 max-w-md">Discover events, shops, and deals. Find the store you're looking for with indoor navigation.</p>
+          <p className="text-white/70 text-sm mt-2 max-w-md" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>Discover events, shops, and deals. Find the store you're looking for with indoor navigation.</p>
         </motion.div>
       </div>
 
