@@ -17,7 +17,7 @@ export const onRequest: PagesFunction = async (context) => {
     url: url.toString(),
     title: "Mall Explorer — Your Mall, In Your Pocket",
     description: "A unified platform for mall shoppers in Abu Dhabi. Indoor navigation, events, deals, and store directories — all from your phone's browser.",
-    image: "https://raw.githubusercontent.com/Salimo/mall-explorer-redesign/master/og-image.jpg",
+    image: "https://mall-explorer.com/og-image.jpg",
   });
 };
 
