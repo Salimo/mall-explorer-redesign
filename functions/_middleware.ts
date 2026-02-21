@@ -2,7 +2,6 @@ export const onRequest: PagesFunction = async (context) => {
   const ua = context.request.headers.get("user-agent") || "";
   const url = new URL(context.request.url);
 
-  // Let static assets (images, CSS, JS) pass through directly
   if (/\.(jpg|jpeg|png|gif|svg|webp|ico|css|js|woff2?|ttf|eot)$/i.test(url.pathname)) {
     return context.next();
   }
@@ -18,7 +17,7 @@ export const onRequest: PagesFunction = async (context) => {
     url: url.toString(),
     title: "Mall Explorer — Your Mall, In Your Pocket",
     description: "A unified platform for mall shoppers in Abu Dhabi. Indoor navigation, events, deals, and store directories — all from your phone's browser.",
-    image: "https://mall-explorer.com/og-image.jpg",
+    image: "https://raw.githubusercontent.com/Salimo/mall-explorer-redesign/master/og-image.jpg",
   });
 };
 
