@@ -27,7 +27,8 @@ import {
 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { logSearch, logStoreSelect } from "@/lib/searchTracking";
 
 // Mall data with stores
 const mallsData: Record<string, MallData> = {
@@ -191,6 +192,17 @@ export default function MallDetail() {
       return matchesSearch && matchesCategory;
     });
   }, [mall, searchQuery, selectedCategory]);
+
+  // Track searches to Firestore so the CRM dashboard picks them up
+  useEffect(() => {
+    if (mall && searchQuery.trim()) {
+      logSearch({
+        query: searchQuery,
+        resultsCount: filteredStores.length,
+        mallId: mall.id,
+      });
+    }
+  }, [searchQuery, filteredStores.length, mall]);
 
   if (!mall) {
     return (
@@ -371,7 +383,20 @@ export default function MallDetail() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.05 }}
                         >
-                          <Card className="hover:border-[#00D9B1] transition-colors cursor-pointer group">
+                          <Card
+                            className="hover:border-[#00D9B1] transition-colors cursor-pointer group"
+                            onClick={() => {
+                              if (searchQuery.trim() && mall) {
+                                logStoreSelect({
+                                  query: searchQuery,
+                                  resultsCount: filteredStores.length,
+                                  mallId: mall.id,
+                                  selectedStoreId: store.name,
+                                  selectedStoreName: store.name,
+                                });
+                              }
+                            }}
+                          >
                             <CardContent className="p-4 flex items-center justify-between">
                               <div className="space-y-1">
                                 <h4 className="font-semibold text-foreground group-hover:text-[#00D9B1] transition-colors">
