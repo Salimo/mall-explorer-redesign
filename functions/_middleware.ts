@@ -1,13 +1,18 @@
 export const onRequest: PagesFunction = async (context) => {
   const ua = context.request.headers.get("user-agent") || "";
+  const url = new URL(context.request.url);
+
+  // Let static assets (images, CSS, JS) pass through directly
+  if (/\.(jpg|jpeg|png|gif|svg|webp|ico|css|js|woff2?|ttf|eot)$/i.test(url.pathname)) {
+    return context.next();
+  }
+
   const isBot =
     /facebookexternalhit|WhatsApp|Twitterbot|Slackbot|Discordbot|TelegramBot|LinkedInBot|Googlebot|bingbot/i.test(
       ua
     );
 
   if (!isBot) return context.next();
-
-  const url = new URL(context.request.url);
 
   return ogResponse({
     url: url.toString(),
