@@ -1,6 +1,7 @@
 /*
- * DESIGN: Cartographic Modernism
- * Mall detail page with directory, wayfinding info, news, and promotions
+ * DESIGN: Mall Explorer — Light Mode Brand
+ * Fonts: DM Sans (headings) + Outfit (body)
+ * Primary Teal: #00BFA5 | Charcoal: #1A1F2E
  */
 
 import { Button } from "@/components/ui/button";
@@ -27,8 +28,7 @@ import {
 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { useState, useMemo, useEffect } from "react";
-import { logSearch, logStoreSelect } from "@/lib/searchTracking";
+import { useState, useMemo } from "react";
 
 // Mall data with stores
 const mallsData: Record<string, MallData> = {
@@ -37,8 +37,8 @@ const mallsData: Record<string, MallData> = {
     name: "Yas Mall",
     location: "Yas Island, Abu Dhabi",
     description: "Abu Dhabi's biggest and the UAE's second-largest shopping center offering an incredible shopping, dining, and entertainment experience.",
-    image: "/images/yas-mall.jpg",
-    interiorImage: "/images/yas-mall-interior.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/CtkHELyYEUelbweO.jpg",
+    interiorImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/CkVxaLRClYUViyIZ.jpg",
     stores: 366,
     floors: 3,
     hours: "Sun-Thu: 10AM-10PM, Fri-Sat: 10AM-12AM",
@@ -82,8 +82,8 @@ const mallsData: Record<string, MallData> = {
     name: "Shams Boutik",
     location: "Al Reem Island, Abu Dhabi",
     description: "Neighborhood community complex bridging the iconic Sun and Sky Towers with the Gate and Arc Towers, offering interesting brands and dining.",
-    image: "/images/shams-boutik.jpg",
-    interiorImage: "/images/mall-experience.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/AwHkWgAVPHeahOrF.jpg",
+    interiorImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/wIIDGcreNTezHgJj.jpg",
     stores: 82,
     floors: 2,
     hours: "Daily: 9AM-10PM",
@@ -119,8 +119,8 @@ const mallsData: Record<string, MallData> = {
     name: "Abu Dhabi Mall",
     location: "Tourist Club Area, Abu Dhabi",
     description: "The heart of the city - an iconic shopping destination featuring luxury brands, diverse dining options, and entertainment for all ages.",
-    image: "/images/abu-dhabi-mall.jpg",
-    interiorImage: "/images/abu-dhabi-mall-interior.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/SJYITbkjtSzakPdO.jpg",
+    interiorImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/NjrmhVUqeONWddUE.jpg",
     stores: 200,
     floors: 3,
     hours: "Sun-Wed: 10AM-10PM, Thu-Sat: 10AM-11PM",
@@ -193,17 +193,6 @@ export default function MallDetail() {
     });
   }, [mall, searchQuery, selectedCategory]);
 
-  // Track searches to Firestore so the CRM dashboard picks them up
-  useEffect(() => {
-    if (mall && searchQuery.trim()) {
-      logSearch({
-        query: searchQuery,
-        resultsCount: filteredStores.length,
-        mallId: mall.id,
-      });
-    }
-  }, [searchQuery, filteredStores.length, mall]);
-
   if (!mall) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -235,20 +224,20 @@ export default function MallDetail() {
             <div className="h-6 w-px bg-border" />
             <Link href="/" className="flex items-center gap-3">
               <img 
-                src="/images/mall-explorer-logo.jpg" 
-                alt="Mall Explorer" 
-                className="w-8 h-8 rounded-lg object-cover"
-              />
-              <span className="font-bold text-lg text-foreground hidden sm:inline">Mall Explorer</span>
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/cnNJgidlIBfnGpDw.png" 
+              alt="Mall Explorer" 
+              className="w-8 h-8 rounded-lg object-cover"
+            />
+            <span className="font-bold text-lg text-foreground hidden sm:inline" style={{ fontFamily: "'DM Sans', sans-serif" }}>Mall Explorer</span>
             </Link>
           </div>
           
-          <Link href={mall.id === 'abu-dhabi-mall' ? '/map/abu-dhabi-mall' : '#'}>
-            <Button className="bg-[#00D9B1] hover:bg-[#00C4A0] text-[#0F172A] font-semibold">
+          <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
+            <Button className="bg-[#00BFA5] hover:bg-[#00A892] text-white font-semibold">
               <Navigation className="w-4 h-4 mr-2" />
-              {mall.id === 'abu-dhabi-mall' ? 'Open Map' : 'Coming Soon'}
+              Open App
             </Button>
-          </Link>
+          </a>
         </div>
       </header>
 
@@ -274,15 +263,15 @@ export default function MallDetail() {
                 
                 <div className="flex flex-wrap gap-6 pt-4">
                   <div className="flex items-center gap-2 text-white/90">
-                    <Store className="w-5 h-5 text-[#00D9B1]" />
+                    <Store className="w-5 h-5 text-[#00BFA5]" />
                     <span className="font-medium">{mall.stores}+ stores</span>
                   </div>
                   <div className="flex items-center gap-2 text-white/90">
-                    <Building2 className="w-5 h-5 text-[#00D9B1]" />
+                    <Building2 className="w-5 h-5 text-[#00BFA5]" />
                     <span className="font-medium">{mall.floors} floors</span>
                   </div>
                   <div className="flex items-center gap-2 text-white/90">
-                    <Clock className="w-5 h-5 text-[#00D9B1]" />
+                    <Clock className="w-5 h-5 text-[#00BFA5]" />
                     <span className="font-medium">{mall.hours.split(',')[0]}</span>
                   </div>
                 </div>
@@ -295,19 +284,21 @@ export default function MallDetail() {
         <section className="bg-primary text-primary-foreground py-4">
           <div className="container flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-6">
-              <a href={`tel:${mall.phone}`} className="flex items-center gap-2 hover:text-[#00D9B1] transition-colors">
+              <a href={`tel:${mall.phone}`} className="flex items-center gap-2 hover:text-[#00BFA5] transition-colors">
                 <Phone className="w-4 h-4" />
                 <span className="text-sm">{mall.phone}</span>
               </a>
-              <a href={`https://${mall.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#00D9B1] transition-colors">
+              <a href={`https://${mall.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#00BFA5] transition-colors">
                 <Globe className="w-4 h-4" />
                 <span className="text-sm">{mall.website}</span>
               </a>
             </div>
-            <Button size="sm" className="bg-[#00D9B1] hover:bg-[oklch(0.72_0.14_175)] text-[#0F172A]">
-              <Smartphone className="w-4 h-4 mr-2" />
-              Get App for Navigation
-            </Button>
+            <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="bg-[#00BFA5] hover:bg-[#00A892] text-white">
+                <Smartphone className="w-4 h-4 mr-2" />
+                Open App
+              </Button>
+            </a>
           </div>
         </section>
 
@@ -343,7 +334,7 @@ export default function MallDetail() {
                     <div className="space-y-2">
                       <Button
                         variant={selectedCategory === null ? "default" : "ghost"}
-                        className={`w-full justify-between ${selectedCategory === null ? 'bg-[#00D9B1] text-[#0F172A]' : ''}`}
+                        className={`w-full justify-between ${selectedCategory === null ? 'bg-[#00BFA5] text-[#1A1F2E]' : ''}`}
                         onClick={() => setSelectedCategory(null)}
                       >
                         All Stores
@@ -353,7 +344,7 @@ export default function MallDetail() {
                         <Button
                           key={cat.name}
                           variant={selectedCategory === cat.name ? "default" : "ghost"}
-                          className={`w-full justify-between ${selectedCategory === cat.name ? 'bg-[#00D9B1] text-[#0F172A]' : ''}`}
+                          className={`w-full justify-between ${selectedCategory === cat.name ? 'bg-[#00BFA5] text-[#1A1F2E]' : ''}`}
                           onClick={() => setSelectedCategory(cat.name)}
                         >
                           {cat.name}
@@ -383,23 +374,10 @@ export default function MallDetail() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.05 }}
                         >
-                          <Card
-                            className="hover:border-[#00D9B1] transition-colors cursor-pointer group"
-                            onClick={() => {
-                              if (searchQuery.trim() && mall) {
-                                logStoreSelect({
-                                  query: searchQuery,
-                                  resultsCount: filteredStores.length,
-                                  mallId: mall.id,
-                                  selectedStoreId: store.name,
-                                  selectedStoreName: store.name,
-                                });
-                              }
-                            }}
-                          >
+                          <Card className="hover:border-[#00BFA5] transition-colors cursor-pointer group">
                             <CardContent className="p-4 flex items-center justify-between">
                               <div className="space-y-1">
-                                <h4 className="font-semibold text-foreground group-hover:text-[#00D9B1] transition-colors">
+                                <h4 className="font-semibold text-foreground group-hover:text-[#00BFA5] transition-colors">
                                   {store.name}
                                 </h4>
                                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -410,7 +388,7 @@ export default function MallDetail() {
                                   </span>
                                 </div>
                               </div>
-                              <Button size="sm" variant="ghost" className="text-[#00D9B1]">
+                              <Button size="sm" variant="ghost" className="text-[#00BFA5]">
                                 <Navigation className="w-4 h-4" />
                               </Button>
                             </CardContent>
@@ -434,7 +412,7 @@ export default function MallDetail() {
                   <div className="space-y-6">
                     <h2 className="text-3xl font-bold text-foreground">
                       Indoor Navigation
-                      <span className="text-[#00D9B1]"> Made Easy</span>
+                      <span className="text-[#00BFA5]"> Made Easy</span>
                     </h2>
                     <p className="text-lg text-muted-foreground">
                       Get turn-by-turn directions to any store in {mall.name}. 
@@ -449,8 +427,8 @@ export default function MallDetail() {
                         "Works offline once downloaded"
                       ].map((feature) => (
                         <div key={feature} className="flex items-center gap-3">
-                          <div className="w-6 h-6 rounded-full bg-[#00D9B1] flex items-center justify-center">
-                            <ArrowRight className="w-4 h-4 text-[#0F172A]" />
+                          <div className="w-6 h-6 rounded-full bg-[#00BFA5] flex items-center justify-center">
+                            <ArrowRight className="w-4 h-4 text-[#1A1F2E]" />
                           </div>
                           <span className="text-foreground">{feature}</span>
                         </div>
@@ -458,10 +436,12 @@ export default function MallDetail() {
                     </div>
 
                     <div className="flex gap-4 pt-4">
-                      <Button className="bg-[#00D9B1] hover:bg-[oklch(0.72_0.14_175)] text-[#0F172A]">
-                        <Smartphone className="w-4 h-4 mr-2" />
-                        Download App
-                      </Button>
+                      <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-[#00BFA5] hover:bg-[#00A892] text-white">
+                          <Smartphone className="w-4 h-4 mr-2" />
+                          Open App
+                        </Button>
+                      </a>
                       <Button variant="outline">
                         View Mall Map
                       </Button>
@@ -470,7 +450,7 @@ export default function MallDetail() {
 
                   <div className="relative">
                     <img 
-                      src="/images/wayfinding-illustration.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/ZYINOsUXKXhygiAZ.png" 
                       alt="Indoor navigation app" 
                       className="w-full max-w-md mx-auto"
                     />
@@ -482,7 +462,7 @@ export default function MallDetail() {
               <TabsContent value="news" className="space-y-8">
                 <div className="max-w-3xl mx-auto">
                   <h2 className="text-3xl font-bold text-foreground mb-8">
-                    What's New at <span className="text-[#00D9B1]">{mall.name}</span>
+                    What's New at <span className="text-[#00BFA5]">{mall.name}</span>
                   </h2>
                   
                   <div className="space-y-6">
@@ -496,8 +476,8 @@ export default function MallDetail() {
                         <Card className="overflow-hidden">
                           <CardContent className="p-6">
                             <div className="flex items-start gap-4">
-                              <div className="w-12 h-12 rounded-lg bg-[#00D9B1]/10 flex items-center justify-center shrink-0">
-                                <Sparkles className="w-6 h-6 text-[#00D9B1]" />
+                              <div className="w-12 h-12 rounded-lg bg-[#00BFA5]/10 flex items-center justify-center shrink-0">
+                                <Sparkles className="w-6 h-6 text-[#00BFA5]" />
                               </div>
                               <div className="space-y-2">
                                 <div className="flex items-center gap-3">
@@ -522,7 +502,7 @@ export default function MallDetail() {
               <TabsContent value="promotions" className="space-y-8">
                 <div className="max-w-4xl mx-auto">
                   <h2 className="text-3xl font-bold text-foreground mb-8">
-                    Live <span className="text-[#00D9B1]">Promotions</span>
+                    Live <span className="text-[#00BFA5]">Promotions</span>
                   </h2>
                   
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -533,11 +513,11 @@ export default function MallDetail() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <Card className="h-full border-border hover:border-[#00D9B1] transition-colors">
+                        <Card className="h-full border-border hover:border-[#00BFA5] transition-colors">
                           <CardHeader className="pb-2">
                             <div className="flex items-center justify-between">
                               <CardTitle className="text-lg">{promo.store}</CardTitle>
-                              <Badge className="bg-[#00D9B1] text-[#0F172A]">
+                              <Badge className="bg-[#00BFA5] text-[#1A1F2E]">
                                 <Percent className="w-3 h-3 mr-1" />
                                 {promo.discount}
                               </Badge>
@@ -547,7 +527,7 @@ export default function MallDetail() {
                             <p className="text-muted-foreground">{promo.description}</p>
                             <div className="flex items-center justify-between text-sm">
                               <span className="text-muted-foreground">Valid until {promo.validUntil}</span>
-                              <Button size="sm" variant="ghost" className="text-[#00D9B1] p-0 h-auto">
+                              <Button size="sm" variant="ghost" className="text-[#00BFA5] p-0 h-auto">
                                 <Navigation className="w-4 h-4 mr-1" />
                                 Navigate
                               </Button>
@@ -579,17 +559,17 @@ export default function MallDetail() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-8">
+      <footer className="bg-[#1A1F2E] text-white py-8">
         <div className="container flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <img 
-              src="/images/mall-explorer-logo.jpg" 
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/cnNJgidlIBfnGpDw.png" 
               alt="Mall Explorer" 
               className="w-8 h-8 rounded-lg object-cover"
             />
-            <span className="font-bold">Mall Explorer</span>
+            <span className="font-bold" style={{ fontFamily: "'DM Sans', sans-serif" }}>Mall Explorer</span>
           </div>
-          <p className="text-sm text-primary-foreground/60">
+          <p className="text-sm text-white/50">
             © 2026 Mall Explorer. All rights reserved.
           </p>
         </div>

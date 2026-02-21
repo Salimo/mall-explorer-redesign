@@ -1,9 +1,10 @@
 /*
- * DESIGN: Mall Explorer - Cartographic Modernism
- * - Professional B2B + B2C dual messaging
- * - Asymmetric layouts (60/40, 70/30)
- * - Mint accent (#00D9B1) for CTAs
- * - Navy primary (#0F172A)
+ * DESIGN: Mall Explorer — Light Mode Brand Guide
+ * Fonts: DM Sans (headings) + Outfit (body)
+ * Primary: Teal #00BFA5
+ * Background: Off-White #F8F9FB
+ * Charcoal: #1A1F2E
+ * Glass-card aesthetic, clean and professional
  */
 
 import { Button } from "@/components/ui/button";
@@ -16,9 +17,6 @@ import {
   Sparkles, 
   Tag, 
   ChevronRight,
-  Smartphone,
-  Building2,
-  Clock,
   ArrowRight,
   BarChart3,
   TrendingUp,
@@ -26,188 +24,167 @@ import {
   Search,
   Target,
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  QrCode,
+  Compass,
+  CalendarDays,
+  ShieldCheck,
+  Eye,
+  MousePointerClick,
+  LogIn,
+  ExternalLink,
+  Monitor,
+  Smartphone,
+  Globe
 } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
-// Mall data - updated with new malls
+
+const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663069303129/cnNJgidlIBfnGpDw.png";
+
+
 const malls = [
   {
     id: "abu-dhabi-mall",
     name: "Abu Dhabi Mall",
-    location: "Tourist Club Area, Abu Dhabi",
-    description: "The heart of the city - iconic shopping destination with luxury brands and dining options.",
-    image: "/images/abu-dhabi-mall.jpg",
+    description: "Iconic shopping destination in the heart of the city with 200+ stores across 3 floors.",
     stores: 200,
     floors: 3,
-    features: ["Luxury Brands", "Restaurants", "Entertainment"],
-    status: "live",
+    status: "live" as const,
   },
   {
     id: "yas-mall",
     name: "Yas Mall",
-    location: "Yas Island, Abu Dhabi",
-    description: "Abu Dhabi's biggest shopping center with 366+ brands across fashion, dining, and entertainment.",
-    image: "/images/yas-mall.jpg",
+    description: "Abu Dhabi's biggest shopping center with 366+ brands on Yas Island.",
     stores: 366,
     floors: 3,
-    features: ["IMAX Cinema", "Food Court", "Kids Zone"],
-    status: "coming-soon",
+    status: "coming-soon" as const,
   },
   {
     id: "galleria-mall",
     name: "The Galleria Mall",
-    location: "Al Maryah Island, Abu Dhabi",
-    description: "Premium luxury destination featuring world-class brands and waterfront dining experiences.",
-    image: "/images/mall-experience.jpg",
+    description: "Premium luxury destination on Al Maryah Island with waterfront dining.",
     stores: 130,
     floors: 2,
-    features: ["Luxury Shopping", "Fine Dining", "Waterfront"],
-    status: "coming-soon",
+    status: "coming-soon" as const,
   },
   {
     id: "marina-mall",
     name: "Marina Mall",
-    location: "Corniche, Abu Dhabi",
-    description: "Iconic waterfront shopping destination with panoramic views and diverse retail offerings.",
-    image: "/images/hero-bg.jpg",
+    description: "Waterfront shopping destination on the Corniche with panoramic views.",
     stores: 400,
     floors: 4,
-    features: ["Observation Deck", "Cinema", "Hypermarket"],
-    status: "coming-soon",
+    status: "coming-soon" as const,
   },
 ];
 
-const features = [
-  {
-    icon: Store,
-    title: "Mall Directory",
-    description: "Browse complete store listings with categories, floor locations, and operating hours.",
-  },
-  {
-    icon: Navigation,
-    title: "Indoor Wayfinding",
-    description: "Find the shop you're looking for 10x faster with turn-by-turn indoor navigation.",
-  },
-  {
-    icon: Sparkles,
-    title: "Events & What's New",
-    description: "Discover new store openings, seasonal events, and mall happenings.",
-  },
-  {
-    icon: Tag,
-    title: "Deals & Promotions",
-    description: "Real-time deals and discounts from stores across all partner malls.",
-  },
+const problemStats = [
+  { stat: "96%", desc: "of shoppers have left a store without purchasing at least once" },
+  { stat: "67%", desc: "couldn't find the product or store they were looking for" },
+  { stat: "90%", desc: "would have bought if they got the help they needed" },
 ];
 
 const comparisonData = [
-  { traditional: "Counts bodies", explorer: "Captures intent" },
-  { traditional: "Knows how many entered", explorer: "Knows where they wanted to go" },
-  { traditional: "Anonymous", explorer: "Can build opted-in profiles" },
-  { traditional: "Hardware cost + maintenance", explorer: "Zero infrastructure" },
-  { traditional: "No engagement channel", explorer: "Direct promo channel to shoppers" },
+  { traditional: "Counts bodies", explorer: "Captures intent", icon: Eye },
+  { traditional: "Knows how many entered", explorer: "Knows where they wanted to go", icon: Target },
+  { traditional: "Anonymous", explorer: "Can build opted-in profiles", icon: Users },
+  { traditional: "Hardware cost + maintenance", explorer: "Zero infrastructure", icon: ShieldCheck },
+  { traditional: "No engagement channel", explorer: "Direct promo channel to shoppers", icon: MousePointerClick },
 ];
 
-const demandMetrics = [
-  { label: "Top searched stores", value: "10", icon: Search },
-  { label: "Category insights", value: "5", icon: Target },
-  { label: "Unmet demand signals", value: "34", icon: TrendingUp },
-  { label: "Promo conversions tracked", value: "892", icon: BarChart3 },
-];
+
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col" style={{ fontFamily: "'Outfit', system-ui, sans-serif" }}>
       {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 glass-card">
         <div className="container flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3">
             <img 
-              src="/images/mall-explorer-logo.jpg" 
+              src={LOGO_URL}
               alt="Mall Explorer" 
-              className="w-10 h-10 rounded-lg object-cover"
+              className="w-9 h-9 rounded-lg object-cover"
             />
-            <span className="font-bold text-lg text-foreground">Mall Explorer</span>
+            <span className="font-bold text-lg text-charcoal" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Mall Explorer
+            </span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#malls" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#how-it-works" className="text-sm font-medium text-[#5A6178] hover:text-[#1A1F2E] transition-colors">
+              How It Works
+            </a>
+            <a href="#malls" className="text-sm font-medium text-[#5A6178] hover:text-[#1A1F2E] transition-colors">
               Malls
             </a>
-            <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Features
-            </a>
-            <a href="#insights" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#insights" className="text-sm font-medium text-[#5A6178] hover:text-[#1A1F2E] transition-colors">
               For Operators
             </a>
-            <a href="#app" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Get App
+            <a href="#dashboard" className="text-sm font-medium text-[#5A6178] hover:text-[#1A1F2E] transition-colors">
+              Dashboard
             </a>
           </nav>
           
-          <Button className="bg-[#00D9B1] hover:bg-[#00C4A0] text-[#0F172A] font-semibold">
-            <Smartphone className="w-4 h-4 mr-2" />
-            Download App
-          </Button>
+          <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
+            <Button className="bg-[#00BFA5] hover:bg-[#00A892] text-white font-semibold shadow-sm">
+              <LogIn className="w-4 h-4 mr-2" />
+              Login
+            </Button>
+          </a>
         </div>
       </header>
 
       <main className="flex-1 pt-16">
-        {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src="/images/hero-bg.jpg" 
-              alt="Modern shopping mall interior" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/90 to-transparent" />
-          </div>
+        {/* Hero Section — Light, clean, asymmetric */}
+        <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-[#F8F9FB] via-white to-[#E8FAF6]">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: 'radial-gradient(circle, #1A1F2E 1px, transparent 1px)',
+            backgroundSize: '32px 32px'
+          }} />
           
-          {/* Content */}
           <div className="container relative z-10">
-            <div className="grid lg:grid-cols-5 gap-12 items-center">
-              {/* Left content - 60% */}
+            <div className="grid lg:grid-cols-12 gap-12 items-center">
+              {/* Left — 7 cols */}
               <motion.div 
-                className="lg:col-span-3 space-y-8"
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
+                className="lg:col-span-7 space-y-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                  <span className="w-2 h-2 bg-[#00D9B1] rounded-full animate-pulse" />
-                  <span className="text-sm text-white/90">Abu Dhabi Mall is now live</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#00BFA5]/8 rounded-full border border-[#00BFA5]/20">
+                  <span className="w-2 h-2 bg-[#00BFA5] rounded-full animate-pulse" />
+                  <span className="text-sm font-medium text-[#00BFA5]">Abu Dhabi Mall is live</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">
-                  Explore malls
+                <h1 className="text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-[#1A1F2E] leading-[1.08] tracking-tight" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  Your mall,
                   <br />
-                  <span className="text-[#00D9B1]">like never before</span>
+                  <span className="text-gradient-teal">in your pocket.</span>
                 </h1>
                 
-                <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
-                  Discover events, shops, and deals. Find the store you're looking for 
-                  <strong className="text-[#00D9B1]"> 10x faster</strong> with indoor navigation.
+                <p className="text-lg md:text-xl text-[#5A6178] max-w-xl leading-relaxed">
+                  A unified platform for mall shoppers in Abu Dhabi. Indoor navigation, events, deals, and store directories — all from your phone's browser. 
+                  <strong className="text-[#1A1F2E]"> No downloads. No beacons. No hassle.</strong>
                 </p>
                 
                 <div className="flex flex-wrap gap-4">
-                  <Link href="/mall/abu-dhabi-mall">
+                  <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
                     <Button 
                       size="lg" 
-                      className="bg-[#00D9B1] hover:bg-[#00C4A0] text-[#0F172A] font-semibold h-14 px-8"
+                      className="bg-[#00BFA5] hover:bg-[#00A892] text-white font-semibold h-14 px-8 teal-glow"
                     >
-                      <Navigation className="w-5 h-5 mr-2" />
+                      <Compass className="w-5 h-5 mr-2" />
                       Start Exploring
                     </Button>
-                  </Link>
+                  </a>
                   <a href="#insights">
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="border-white/30 text-white hover:bg-white/10 h-14 px-8"
+                      className="border-[#D1D5DE] text-[#1A1F2E] hover:bg-[#F0F1F5] h-14 px-8"
                     >
                       For Mall Operators
                       <ChevronRight className="w-5 h-5 ml-2" />
@@ -215,83 +192,237 @@ export default function Home() {
                   </a>
                 </div>
                 
-                {/* Stats */}
-                <div className="flex gap-12 pt-8 border-t border-white/20">
-                  <div>
-                    <div className="text-3xl font-bold text-white">4</div>
-                    <div className="text-sm text-white/60">Partner Malls</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-white">1,000+</div>
-                    <div className="text-sm text-white/60">Stores Listed</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-white/60">Beacons Required</div>
-                  </div>
+                {/* Stats row */}
+                <div className="flex gap-10 pt-6">
+                  {[
+                    { value: "4", label: "Partner Malls" },
+                    { value: "1,000+", label: "Stores Listed" },
+                    { value: "0", label: "Beacons Required" },
+                  ].map((s) => (
+                    <div key={s.label}>
+                      <div className="text-2xl font-bold text-[#1A1F2E]" style={{ fontFamily: "'DM Sans', sans-serif" }}>{s.value}</div>
+                      <div className="text-sm text-[#8B90A0]">{s.label}</div>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
               
-              {/* Right content - 40% */}
+              {/* Right — 5 cols: App preview */}
               <motion.div 
-                className="lg:col-span-2 hidden lg:block"
+                className="lg:col-span-5 hidden lg:flex justify-center"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
               >
                 <div className="relative">
-                  <img 
-                    src="/images/wayfinding-illustration.png" 
-                    alt="Mall Explorer app interface" 
-                    className="w-full max-w-md mx-auto drop-shadow-2xl"
-                  />
+                  {/* Phone frame mockup */}
+                  <div className="relative w-[280px] h-[560px] bg-[#1A1F2E] rounded-[2.5rem] p-3 shadow-2xl">
+                    <div className="w-full h-full rounded-[2rem] overflow-hidden bg-white">
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#F8F9FB] to-white p-6">
+                        <img src={LOGO_URL} alt="Mall Explorer" className="w-16 h-16 rounded-2xl mb-4" />
+                        <div className="text-lg font-bold text-[#1A1F2E] mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>Mall Explorer</div>
+                        <div className="text-xs text-[#8B90A0] mb-6">Your mall, in your pocket</div>
+                        
+                        {/* Mini search bar */}
+                        <div className="w-full bg-[#F0F1F5] rounded-xl px-4 py-3 flex items-center gap-2 mb-4">
+                          <Search className="w-4 h-4 text-[#8B90A0]" />
+                          <span className="text-sm text-[#8B90A0]">Search stores...</span>
+                        </div>
+                        
+                        {/* Mini mall cards */}
+                        <div className="w-full space-y-2">
+                          <div className="bg-white border border-[#E2E4EA] rounded-lg p-3 flex items-center justify-between">
+                            <div>
+                              <div className="text-xs font-semibold text-[#1A1F2E]">Abu Dhabi Mall</div>
+                              <div className="text-[10px] text-[#8B90A0]">200+ stores</div>
+                            </div>
+                            <div className="w-2 h-2 bg-[#00BFA5] rounded-full" />
+                          </div>
+                          <div className="bg-white border border-[#E2E4EA] rounded-lg p-3 flex items-center justify-between opacity-50">
+                            <div>
+                              <div className="text-xs font-semibold text-[#1A1F2E]">Yas Mall</div>
+                              <div className="text-[10px] text-[#8B90A0]">Coming soon</div>
+                            </div>
+                          </div>
+                          <div className="bg-white border border-[#E2E4EA] rounded-lg p-3 flex items-center justify-between opacity-50">
+                            <div>
+                              <div className="text-xs font-semibold text-[#1A1F2E]">The Galleria</div>
+                              <div className="text-[10px] text-[#8B90A0]">Coming soon</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating badge */}
+                  <div className="absolute -right-8 top-20 glass-card rounded-xl px-4 py-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-[#00BFA5]/10 flex items-center justify-center">
+                        <Navigation className="w-4 h-4 text-[#00BFA5]" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-[#1A1F2E]">No beacons</div>
+                        <div className="text-[10px] text-[#8B90A0]">Works instantly</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating badge bottom */}
+                  <div className="absolute -left-12 bottom-28 glass-card rounded-xl px-4 py-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-[#00BFA5]/10 flex items-center justify-center">
+                        <QrCode className="w-4 h-4 text-[#00BFA5]" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-[#1A1F2E]">Scan & Go</div>
+                        <div className="text-[10px] text-[#8B90A0]">No download</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
           </div>
-          
-          {/* Decorative path line */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00D9B1] to-transparent opacity-50" />
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="py-24 bg-background relative">
-          <div className="container relative">
+        {/* The Problem Section */}
+        <section className="py-20 bg-white">
+          <div className="container">
             <motion.div 
-              className="text-center max-w-2xl mx-auto mb-16"
+              className="text-center max-w-2xl mx-auto mb-14"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Badge variant="outline" className="mb-4 border-[#00D9B1] text-[#00D9B1]">
-                For Shoppers
+              <Badge className="mb-4 bg-red-50 text-red-600 border-red-200 hover:bg-red-50">
+                The Problem
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Everything you need to
-                <br />
-                <span className="text-[#00D9B1]">explore with ease</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Shoppers are getting lost — literally
               </h2>
-              <p className="text-lg text-muted-foreground">
-                From finding stores to discovering deals, Mall Explorer makes shopping effortless.
+              <p className="text-[#5A6178] text-lg">
+                Large multi-floor malls disorient residents and tourists alike. Sales go unnoticed, new stores get missed, and shoppers leave frustrated.
               </p>
             </motion.div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.map((feature, index) => (
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {problemStats.map((item, i) => (
                 <motion.div
-                  key={feature.title}
+                  key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: i * 0.1 }}
                 >
-                  <Card className="h-full border-border hover:border-[#00D9B1] transition-colors group">
-                    <CardContent className="p-6 space-y-4">
-                      <div className="w-12 h-12 rounded-lg bg-[#00D9B1]/10 flex items-center justify-center group-hover:bg-[#00D9B1] transition-colors">
-                        <feature.icon className="w-6 h-6 text-[#00D9B1] group-hover:text-[#0F172A] transition-colors" />
+                  <Card className="border-[#E2E4EA] bg-[#FAFBFC] hover:shadow-md transition-shadow h-full">
+                    <CardContent className="p-8 text-center">
+                      <div className="text-5xl font-bold text-[#00BFA5] mb-3" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                        {item.stat}
                       </div>
-                      <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                      <p className="text-[#5A6178] leading-relaxed">{item.desc}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-center text-xs text-[#8B90A0] mt-6">
+              Sources: Retail TouchPoints / TimeTrade consumer studies
+            </p>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section id="how-it-works" className="py-20 bg-[#F8F9FB]">
+          <div className="container">
+            <motion.div 
+              className="text-center max-w-2xl mx-auto mb-14"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Badge className="mb-4 bg-[#00BFA5]/8 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/8">
+                How It Works
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Three steps. Zero friction.
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {[
+                { step: "1", icon: QrCode, title: "Scan the QR Code", desc: "Available at mall entrances. Opens instantly in your browser — no app download needed." },
+                { step: "2", icon: Search, title: "Search & Discover", desc: "Find stores, browse events, check out deals and promotions happening right now." },
+                { step: "3", icon: Navigation, title: "Navigate There", desc: "Get indoor turn-by-turn directions on your phone. Arrive at your destination, not lost." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12 }}
+                >
+                  <div className="glass-card rounded-2xl p-8 text-center h-full hover:shadow-lg transition-shadow">
+                    <div className="w-14 h-14 rounded-2xl bg-[#00BFA5] flex items-center justify-center mx-auto mb-5">
+                      <item.icon className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="text-xs font-bold text-[#00BFA5] uppercase tracking-wider mb-2">Step {item.step}</div>
+                    <h3 className="text-xl font-bold text-[#1A1F2E] mb-3" style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.title}</h3>
+                    <p className="text-[#5A6178] leading-relaxed">{item.desc}</p>
+                  </div>
+                  {i < 2 && (
+                    <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                      <ArrowRight className="w-6 h-6 text-[#D1D5DE]" />
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-20 bg-white">
+          <div className="container">
+            <motion.div 
+              className="text-center max-w-2xl mx-auto mb-14"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Badge className="mb-4 bg-[#00BFA5]/8 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/8">
+                For Shoppers
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Everything you need in one place
+              </h2>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: Navigation, title: "Indoor Navigation", desc: "Turn-by-turn directions inside the mall. No beacons or hardware required.", color: "#00BFA5" },
+                { icon: CalendarDays, title: "Events & What's New", desc: "Stay updated on mall events, seasonal sales, and new store openings.", color: "#6366F1" },
+                { icon: Store, title: "Store Directory", desc: "Browse every store, restaurant, and service. Filter by category or floor.", color: "#F59E0B" },
+                { icon: Tag, title: "Deals & Promotions", desc: "Real-time deals and discounts from stores across all partner malls.", color: "#EF4444" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Card className="border-[#E2E4EA] hover:shadow-md transition-all hover:-translate-y-1 h-full">
+                    <CardContent className="p-6">
+                      <div 
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style={{ backgroundColor: `${item.color}12` }}
+                      >
+                        <item.icon className="w-6 h-6" style={{ color: item.color }} />
+                      </div>
+                      <h3 className="text-lg font-bold text-[#1A1F2E] mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.title}</h3>
+                      <p className="text-sm text-[#5A6178] leading-relaxed">{item.desc}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -301,175 +432,111 @@ export default function Home() {
         </section>
 
         {/* Malls Section */}
-        <section id="malls" className="py-24 bg-secondary/30">
+        <section id="malls" className="py-20 bg-[#F8F9FB]">
           <div className="container">
             <motion.div 
-              className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+              className="text-center max-w-2xl mx-auto mb-14"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div>
-                <Badge variant="outline" className="mb-4 border-[#00D9B1] text-[#00D9B1]">
-                  Partner Malls
-                </Badge>
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Explore Abu Dhabi's
-                  <br />
-                  <span className="text-[#00D9B1]">premier destinations</span>
-                </h2>
-              </div>
-              <p className="text-lg text-muted-foreground max-w-md">
-                Indoor navigation available at these shopping centers. More locations coming soon.
-              </p>
+              <Badge className="mb-4 bg-[#00BFA5]/8 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/8">
+                Partner Malls
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Abu Dhabi's top malls, one platform
+              </h2>
             </motion.div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {malls.map((mall, index) => (
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {malls.map((mall, i) => (
                 <motion.div
                   key={mall.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                 >
-                  {mall.status === "live" ? (
-                    <Link href={`/mall/${mall.id}`}>
-                      <Card className="overflow-hidden h-full border-border hover:border-[#00D9B1] transition-all hover:shadow-xl group cursor-pointer">
-                        <div className="relative h-48 overflow-hidden">
-                          <img 
-                            src={mall.image} 
-                            alt={mall.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                          <Badge className="absolute top-3 right-3 bg-[#10B981] text-white">
+                  <Card className={`border-[#E2E4EA] hover:shadow-md transition-all h-full ${mall.status === 'coming-soon' ? 'opacity-70' : ''}`}>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-11 h-11 rounded-xl bg-[#1A1F2E] flex items-center justify-center">
+                          <Store className="w-5 h-5 text-[#00BFA5]" />
+                        </div>
+                        {mall.status === "live" ? (
+                          <Badge className="bg-[#00BFA5]/10 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/10">
+                            <span className="w-1.5 h-1.5 bg-[#00BFA5] rounded-full mr-1.5 animate-pulse" />
                             Live
                           </Badge>
-                          <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="text-xl font-bold text-white">{mall.name}</h3>
-                            <div className="flex items-center gap-1 text-white/80 text-sm">
-                              <MapPin className="w-3 h-3" />
-                              {mall.location}
-                            </div>
-                          </div>
-                        </div>
-                        <CardContent className="p-4 space-y-3">
-                          <div className="flex items-center gap-4 text-sm">
-                            <div className="flex items-center gap-1">
-                              <Store className="w-4 h-4 text-[#00D9B1]" />
-                              <span className="text-foreground font-medium">{mall.stores}+</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Building2 className="w-4 h-4 text-[#00D9B1]" />
-                              <span className="text-foreground font-medium">{mall.floors} floors</span>
-                            </div>
-                          </div>
-                          <div className="pt-2 border-t border-border">
-                            <span className="inline-flex items-center text-[#00D9B1] font-medium text-sm group-hover:gap-2 gap-1 transition-all">
-                              Explore Now
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ) : (
-                    <Card className="overflow-hidden h-full border-border opacity-80">
-                      <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={mall.image} 
-                          alt={mall.name}
-                          className="w-full h-full object-cover grayscale"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" />
-                        <Badge className="absolute top-3 right-3 bg-amber-500 text-white">
-                          Coming Soon
-                        </Badge>
-                        <div className="absolute bottom-3 left-3 right-3">
-                          <h3 className="text-xl font-bold text-white">{mall.name}</h3>
-                          <div className="flex items-center gap-1 text-white/80 text-sm">
-                            <MapPin className="w-3 h-3" />
-                            {mall.location}
-                          </div>
-                        </div>
+                        ) : (
+                          <Badge variant="outline" className="border-[#D1D5DE] text-[#8B90A0]">
+                            Coming Soon
+                          </Badge>
+                        )}
                       </div>
-                      <CardContent className="p-4 space-y-3">
-                        <div className="flex items-center gap-4 text-sm">
-                          <div className="flex items-center gap-1">
-                            <Store className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground font-medium">{mall.stores}+</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Building2 className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground font-medium">{mall.floors} floors</span>
-                          </div>
-                        </div>
-                        <div className="pt-2 border-t border-border">
-                          <span className="text-muted-foreground text-sm">
-                            Launching soon
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
+                      <h3 className="text-lg font-bold text-[#1A1F2E] mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>{mall.name}</h3>
+                      <p className="text-sm text-[#5A6178] mb-4 leading-relaxed">{mall.description}</p>
+                      <div className="flex items-center gap-4 text-xs text-[#8B90A0]">
+                        <span>{mall.stores}+ stores</span>
+                        <span>·</span>
+                        <span>{mall.floors} floors</span>
+                      </div>
+                      {mall.status === "live" && (
+                        <Link href={`/mall/${mall.id}`}>
+                          <Button className="w-full mt-4 bg-[#00BFA5] hover:bg-[#00A892] text-white font-medium">
+                            Explore Mall
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </Link>
+                      )}
+                    </CardContent>
+                  </Card>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* B2B Insights Section */}
-        <section id="insights" className="py-24 bg-[#0F172A] text-white">
+        {/* B2B: Intent Data Section */}
+        <section id="insights" className="py-20 bg-[#1A1F2E] text-white">
           <div className="container">
             <motion.div 
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="max-w-3xl mx-auto text-center mb-14"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Badge className="mb-4 bg-[#00D9B1] text-[#0F172A]">
+              <Badge className="mb-4 bg-[#00BFA5]/15 text-[#00BFA5] border-[#00BFA5]/30 hover:bg-[#00BFA5]/15">
                 For Mall Operators
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Beyond footfall.
+              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Your footfall counters tell you how many people came.
                 <br />
-                <span className="text-[#00D9B1]">Capture shopper intent.</span>
+                <span className="text-[#00BFA5]">We tell you what they were looking for.</span>
               </h2>
-              <p className="text-xl text-white/70 leading-relaxed">
-                Your footfall counters tell you how many people came. Our app tells you 
-                <strong className="text-white"> what they were looking for</strong> — which stores they searched for, 
-                which ones they couldn't find, and which promotions actually drove action.
-              </p>
-              <p className="text-lg text-[#00D9B1] font-semibold mt-4">
-                Zero beacons, zero hardware — just insights from real shopper intent.
+              <p className="text-lg text-white/70 leading-relaxed">
+                Which stores they searched for, which ones they couldn't find, and which promotions actually drove action. 
+                <strong className="text-white"> Zero beacons, zero hardware</strong> — just insights from real shopper intent.
               </p>
             </motion.div>
 
             {/* Comparison Table */}
             <motion.div 
-              className="max-w-4xl mx-auto mb-16"
+              className="max-w-3xl mx-auto mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
-                <div className="grid grid-cols-2 bg-white/10">
-                  <div className="p-4 text-center font-semibold text-white/60">
-                    Traditional Footfall Tech
-                  </div>
-                  <div className="p-4 text-center font-semibold text-[#00D9B1]">
-                    Mall Explorer
-                  </div>
+              <div className="rounded-2xl border border-white/10 overflow-hidden">
+                <div className="grid grid-cols-2 bg-white/5">
+                  <div className="px-6 py-4 text-sm font-semibold text-white/60 border-r border-white/10">Traditional Footfall Tech</div>
+                  <div className="px-6 py-4 text-sm font-semibold text-[#00BFA5]">Mall Explorer</div>
                 </div>
-                {comparisonData.map((row, index) => (
-                  <div key={index} className="grid grid-cols-2 border-t border-white/10">
-                    <div className="p-4 text-white/60 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                      {row.traditional}
-                    </div>
-                    <div className="p-4 text-white font-medium flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#00D9B1]" />
+                {comparisonData.map((row, i) => (
+                  <div key={i} className="grid grid-cols-2 border-t border-white/10">
+                    <div className="px-6 py-4 text-sm text-white/50 border-r border-white/10">{row.traditional}</div>
+                    <div className="px-6 py-4 text-sm text-white font-medium flex items-center gap-2">
+                      <row.icon className="w-4 h-4 text-[#00BFA5] shrink-0" />
                       {row.explorer}
                     </div>
                   </div>
@@ -477,275 +544,324 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Monthly Demand Report Preview */}
+            {/* Monthly Demand Report */}
             <motion.div 
-              className="max-w-5xl mx-auto"
+              className="max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2">Monthly Demand Report</h3>
-                <p className="text-white/60">Sample insights from our analytics dashboard</p>
-              </div>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                {demandMetrics.map((metric, index) => (
-                  <Card key={index} className="bg-white/5 border-white/10">
-                    <CardContent className="p-6 text-center">
-                      <metric.icon className="w-8 h-8 text-[#00D9B1] mx-auto mb-3" />
-                      <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-                      <div className="text-sm text-white/60">{metric.label}</div>
-                    </CardContent>
-                  </Card>
+              <h3 className="text-xl font-bold mb-6 text-center" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Monthly Demand Report
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                {[
+                  { icon: Search, label: "Top 10 searched stores", color: "#00BFA5" },
+                  { icon: Target, label: "Top 5 searched categories", color: "#6366F1" },
+                  { icon: TrendingUp, label: "Unmet demand signals", color: "#F59E0B" },
+                  { icon: BarChart3, label: "Promo conversion tracking", color: "#EF4444" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-white/5 rounded-xl px-5 py-4 border border-white/10">
+                    <item.icon className="w-5 h-5 shrink-0" style={{ color: item.color }} />
+                    <span className="text-sm text-white/80">{item.label}</span>
+                  </div>
                 ))}
               </div>
 
               <div className="bg-white/5 rounded-2xl border border-white/10 p-6 space-y-4">
-                <div className="flex items-center gap-3 text-white/80">
-                  <TrendingUp className="w-5 h-5 text-[#00D9B1]" />
-                  <span><strong className="text-white">34 searches for "Nike"</strong> — no Nike store (demand signal)</span>
+                <div className="flex items-start gap-3 text-white/80">
+                  <TrendingUp className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
+                  <span><strong className="text-white">34 searches for "Nike"</strong> — no Nike store in the mall (demand signal)</span>
                 </div>
-                <div className="flex items-center gap-3 text-white/80">
-                  <BarChart3 className="w-5 h-5 text-[#00D9B1]" />
+                <div className="flex items-start gap-3 text-white/80">
+                  <BarChart3 className="w-5 h-5 text-[#00BFA5] shrink-0 mt-0.5" />
                   <span><strong className="text-white">Ramadan Night Market promo:</strong> 892 impressions → 156 clicks → 89 navigations</span>
                 </div>
-                <div className="flex items-center gap-3 text-white/80">
-                  <Users className="w-5 h-5 text-[#00D9B1]" />
+                <div className="flex items-start gap-3 text-white/80">
+                  <Users className="w-5 h-5 text-[#6366F1] shrink-0 mt-0.5" />
                   <span><strong className="text-white">Busiest navigation days:</strong> Thursday, Friday</span>
                 </div>
-                <div className="flex items-center gap-3 text-white/80">
-                  <MapPin className="w-5 h-5 text-[#00D9B1]" />
+                <div className="flex items-start gap-3 text-white/80">
+                  <MapPin className="w-5 h-5 text-[#EF4444] shrink-0 mt-0.5" />
                   <span><strong className="text-white">Most common entry point:</strong> Parking Level 2</span>
                 </div>
-              </div>
-
-              <div className="text-center mt-10">
-                <Button 
-                  size="lg" 
-                  className="bg-[#00D9B1] hover:bg-[#00C4A0] text-[#0F172A] font-semibold h-14 px-8"
-                >
-                  <Zap className="w-5 h-5 mr-2" />
-                  Request Demo
-                </Button>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* App Download Section */}
-        <section id="app" className="py-24 bg-background relative overflow-hidden">
-          <div className="container relative">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div 
-                className="space-y-8"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <Badge className="bg-[#00D9B1] text-[#0F172A] hover:bg-[#00D9B1]">
-                  Mobile App
-                </Badge>
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                  Explore in your pocket
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Download the Mall Explorer app for the complete indoor navigation experience. 
-                  Get turn-by-turn directions, save favorite stores, and receive personalized deal alerts.
-                </p>
-                
-                <ul className="space-y-4">
-                  {[
-                    "Indoor navigation without beacons",
-                    "Offline maps available",
-                    "Personalized recommendations",
-                    "Exclusive in-app promotions"
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-foreground">
-                      <div className="w-6 h-6 rounded-full bg-[#00D9B1] flex items-center justify-center">
-                        <ChevronRight className="w-4 h-4 text-[#0F172A]" />
+        {/* Dashboard Teaser */}
+        <section id="dashboard" className="py-20 bg-white">
+          <div className="container">
+            <motion.div 
+              className="text-center max-w-2xl mx-auto mb-14"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Badge className="mb-4 bg-[#00BFA5]/8 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/8">
+                Live Dashboard
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Real-time CRM & analytics
+              </h2>
+              <p className="text-[#5A6178] text-lg">
+                Every search, every navigation, every unmet demand — captured and visualized in real time.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+              {[
+                { icon: Users, value: "User Signups", desc: "Track new registrations and returning visitors over time", color: "#00BFA5" },
+                { icon: Search, value: "Search Analytics", desc: "See what shoppers are searching for in real time", color: "#6366F1" },
+                { icon: TrendingUp, value: "Unmet Demand", desc: "Discover brands shoppers want but can't find", color: "#F59E0B" },
+                { icon: BarChart3, value: "Promo Tracking", desc: "Measure impressions, clicks, and navigations per campaign", color: "#EF4444" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Card className="border-[#E2E4EA] h-full hover:shadow-md transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: `${item.color}12` }}>
+                        <item.icon className="w-6 h-6" style={{ color: item.color }} />
                       </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <Button 
-                    size="lg" 
-                    className="bg-[#0F172A] text-white hover:bg-[#1E293B] h-14 px-6"
-                  >
-                    <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-                    </svg>
-                    App Store
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="border-[#0F172A] text-[#0F172A] hover:bg-[#0F172A]/5 h-14 px-6"
-                  >
-                    <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
-                    </svg>
-                    Google Play
-                  </Button>
+                      <h3 className="text-base font-bold text-[#1A1F2E] mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.value}</h3>
+                      <p className="text-sm text-[#5A6178] leading-relaxed">{item.desc}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Blurred preview teaser */}
+            <motion.div 
+              className="max-w-4xl mx-auto relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="rounded-2xl border border-[#E2E4EA] overflow-hidden shadow-lg bg-[#F8F9FB]">
+                {/* Fake browser chrome */}
+                <div className="bg-[#F0F1F5] px-4 py-3 flex items-center gap-2 border-b border-[#E2E4EA]">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                    <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+                  </div>
+                  <div className="flex-1 flex justify-center">
+                    <div className="bg-white rounded-md px-4 py-1 text-xs text-[#8B90A0] border border-[#E2E4EA] max-w-xs w-full text-center">
+                      dashboard.mall-explorer.com
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-              
-              <motion.div 
-                className="relative hidden lg:block"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <img 
-                  src="/images/app-mockup.png" 
-                  alt="Mall Explorer mobile app" 
-                  className="w-full max-w-sm mx-auto drop-shadow-2xl"
-                />
-              </motion.div>
+                {/* Blurred abstract dashboard representation */}
+                <div className="relative p-8 min-h-[320px]">
+                  {/* Abstract dashboard grid — blurred */}
+                  <div className="filter blur-[6px] pointer-events-none select-none">
+                    <div className="grid grid-cols-4 gap-4 mb-6">
+                      {["#00BFA5", "#6366F1", "#F59E0B", "#EF4444"].map((c, i) => (
+                        <div key={i} className="bg-white rounded-xl p-4 border border-[#E2E4EA]">
+                          <div className="w-8 h-3 rounded mb-3" style={{ backgroundColor: `${c}30` }} />
+                          <div className="w-16 h-6 rounded bg-[#1A1F2E]/80 mb-1" />
+                          <div className="w-20 h-2 rounded bg-[#8B90A0]/30" />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white rounded-xl p-4 border border-[#E2E4EA] h-40">
+                        <div className="w-24 h-3 rounded bg-[#1A1F2E]/60 mb-4" />
+                        <div className="flex items-end gap-3 h-24">
+                          {[40, 65, 50, 80, 70, 90, 55].map((h, i) => (
+                            <div key={i} className="flex-1 rounded-t" style={{ height: `${h}%`, backgroundColor: "#00BFA5" }} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-xl p-4 border border-[#E2E4EA] h-40">
+                        <div className="w-24 h-3 rounded bg-[#1A1F2E]/60 mb-4" />
+                        <div className="space-y-3">
+                          {[85, 72, 60, 45, 30].map((w, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <div className="w-8 h-2 rounded bg-[#8B90A0]/30" />
+                              <div className="h-3 rounded" style={{ width: `${w}%`, backgroundColor: "#00BFA5" }} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Overlay CTA */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-[2px]">
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-2xl bg-[#1A1F2E] flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <Monitor className="w-8 h-8 text-[#00BFA5]" />
+                      </div>
+                      <h3 className="text-xl font-bold text-[#1A1F2E] mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>See the dashboard in action</h3>
+                      <p className="text-[#5A6178] mb-5 max-w-sm">Get a personalized walkthrough of how Mall Explorer captures and visualizes shopper intent data.</p>
+                      <a href="mailto:hello@mall-explorer.com">
+                        <Button className="bg-[#00BFA5] hover:bg-[#00A892] text-white font-semibold px-8 h-12 teal-glow">
+                          <Zap className="w-4 h-4 mr-2" />
+                          Request a Demo
+                        </Button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Platform Section */}
+        <section className="py-20 bg-[#F8F9FB]">
+          <div className="container">
+            <motion.div 
+              className="text-center max-w-2xl mx-auto mb-14"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Badge className="mb-4 bg-[#00BFA5]/8 text-[#00BFA5] border-[#00BFA5]/20 hover:bg-[#00BFA5]/8">
+                Platform
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F2E] mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Available everywhere
+              </h2>
+              <p className="text-[#5A6178] text-lg">
+                Mall Explorer works instantly in the browser. Native apps are on the way.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              {[
+                { icon: Globe, title: "Web App", desc: "Live now — works in any browser. No download required.", status: "Live", link: "https://app.mall-explorer.com/" },
+                { icon: Smartphone, title: "iOS App", desc: "Native iPhone app with offline maps and push notifications.", status: "Coming Soon", link: null },
+                { icon: Smartphone, title: "Android App", desc: "Native Android app for the full mobile experience.", status: "Coming Soon", link: null },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Card className={`border-[#E2E4EA] h-full ${item.link ? '' : 'opacity-60'}`}>
+                    <CardContent className="p-6 text-center">
+                      <div className="w-14 h-14 rounded-2xl bg-[#1A1F2E] flex items-center justify-center mx-auto mb-4">
+                        <item.icon className="w-7 h-7 text-[#00BFA5]" />
+                      </div>
+                      <h3 className="text-lg font-bold text-[#1A1F2E] mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.title}</h3>
+                      <Badge className={`mb-3 ${item.link ? 'bg-[#00BFA5]/10 text-[#00BFA5] border-[#00BFA5]/20' : 'bg-[#F0F1F5] text-[#8B90A0] border-[#E2E4EA]'} hover:bg-transparent`}>
+                        {item.status}
+                      </Badge>
+                      <p className="text-sm text-[#5A6178] leading-relaxed">{item.desc}</p>
+                      {item.link && (
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
+                          <Button className="mt-4 bg-[#00BFA5] hover:bg-[#00A892] text-white font-medium w-full">
+                            Open App
+                            <ExternalLink className="w-4 h-4 ml-2" />
+                          </Button>
+                        </a>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Why Mall Explorer Section */}
-        <section className="py-24 bg-secondary/30">
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-br from-[#1A1F2E] to-[#0D1117]">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-              >
-                <img 
-                  src="/images/mall-experience.jpg" 
-                  alt="Luxury mall atrium" 
-                  className="rounded-2xl shadow-2xl"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-card p-6 rounded-xl shadow-lg border border-border">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#00D9B1]/10 flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-[#00D9B1]" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-foreground">10x</div>
-                      <div className="text-sm text-muted-foreground">Faster to find stores</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                className="space-y-6"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <Badge variant="outline" className="border-[#00D9B1] text-[#00D9B1]">
-                  Why Mall Explorer
-                </Badge>
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                  Shopping made
-                  <br />
-                  <span className="text-[#00D9B1]">effortless</span>
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Large malls can be overwhelming. Mall Explorer transforms your shopping experience 
-                  with precise indoor navigation, helping you find exactly what you need without 
-                  wandering aimlessly.
-                </p>
-                
-                <div className="space-y-4 pt-4">
-                  {[
-                    { title: "Explore", desc: "Discover events, new stores, and what's happening at your favorite malls" },
-                    { title: "Navigate", desc: "Turn-by-turn indoor directions without beacons or hardware" },
-                    { title: "Discover", desc: "Find deals, promotions, and hidden gems you'd otherwise miss" },
-                  ].map((item) => (
-                    <div key={item.title} className="flex gap-4">
-                      <div className="w-1 bg-[#00D9B1] rounded-full" />
-                      <div>
-                        <h4 className="font-semibold text-foreground">{item.title}</h4>
-                        <p className="text-muted-foreground">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+            <motion.div 
+              className="text-center max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Ready to explore?
+              </h2>
+              <p className="text-lg text-white/70 mb-8 leading-relaxed">
+                Whether you're a shopper looking for the fastest way to find your store, or a mall operator who wants to understand what shoppers actually want — Mall Explorer has you covered.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-[#00BFA5] hover:bg-[#00A892] text-white font-semibold h-14 px-8 teal-glow">
+                    <Compass className="w-5 h-5 mr-2" />
+                    Start Exploring
+                  </Button>
+                </a>
+                <a href="mailto:hello@mall-explorer.com">
+                  <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 h-14 px-8">
+                    <Zap className="w-5 h-5 mr-2" />
+                    Request Demo
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#0F172A] text-white py-16">
+      <footer className="bg-[#1A1F2E] text-white py-14 border-t border-white/5">
         <div className="container">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid md:grid-cols-4 gap-10 mb-10">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <img 
-                  src="/images/mall-explorer-logo.jpg" 
+                  src={LOGO_URL}
                   alt="Mall Explorer" 
-                  className="w-10 h-10 rounded-lg object-cover"
+                  className="w-9 h-9 rounded-lg object-cover"
                 />
-                <span className="font-bold text-lg">Mall Explorer</span>
+                <span className="font-bold text-lg" style={{ fontFamily: "'DM Sans', sans-serif" }}>Mall Explorer</span>
               </div>
-              <p className="text-white/70 text-sm leading-relaxed">
-                Explore. Navigate. Discover. Your guide to Abu Dhabi's premier shopping destinations.
+              <p className="text-white/50 text-sm leading-relaxed">
+                Your mall, in your pocket. A unified platform for mall shoppers in Abu Dhabi.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Partner Malls</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/mall/abu-dhabi-mall" className="hover:text-[#00D9B1] transition-colors">Abu Dhabi Mall</Link></li>
-                <li><span className="text-white/40">Yas Mall (Coming Soon)</span></li>
-                <li><span className="text-white/40">The Galleria Mall (Coming Soon)</span></li>
-                <li><span className="text-white/40">Marina Mall (Coming Soon)</span></li>
+              <h4 className="font-semibold mb-4 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>Partner Malls</h4>
+              <ul className="space-y-2.5 text-sm text-white/50">
+                <li><Link href="/mall/abu-dhabi-mall" className="hover:text-[#00BFA5] transition-colors">Abu Dhabi Mall</Link></li>
+                <li><span className="text-white/30">Yas Mall (Coming Soon)</span></li>
+                <li><span className="text-white/30">The Galleria Mall (Coming Soon)</span></li>
+                <li><span className="text-white/30">Marina Mall (Coming Soon)</span></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Features</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><a href="#" className="hover:text-[#00D9B1] transition-colors">Mall Directory</a></li>
-                <li><a href="#" className="hover:text-[#00D9B1] transition-colors">Indoor Wayfinding</a></li>
-                <li><a href="#" className="hover:text-[#00D9B1] transition-colors">Events & What's New</a></li>
-                <li><a href="#" className="hover:text-[#00D9B1] transition-colors">Deals & Promotions</a></li>
+              <h4 className="font-semibold mb-4 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>Product</h4>
+              <ul className="space-y-2.5 text-sm text-white/50">
+                <li><a href="https://app.mall-explorer.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#00BFA5] transition-colors">Web App</a></li>
+                <li><a href="#how-it-works" className="hover:text-[#00BFA5] transition-colors">How It Works</a></li>
+                <li><a href="#insights" className="hover:text-[#00BFA5] transition-colors">For Operators</a></li>
+                <li><a href="#dashboard" className="hover:text-[#00BFA5] transition-colors">Dashboard</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">For Operators</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><a href="#insights" className="hover:text-[#00D9B1] transition-colors">Shopper Intent Data</a></li>
-                <li><a href="#insights" className="hover:text-[#00D9B1] transition-colors">Monthly Reports</a></li>
-                <li><a href="#insights" className="hover:text-[#00D9B1] transition-colors">Request Demo</a></li>
-                <li><a href="#" className="hover:text-[#00D9B1] transition-colors">Contact Us</a></li>
+              <h4 className="font-semibold mb-4 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>Connect</h4>
+              <ul className="space-y-2.5 text-sm text-white/50">
+                <li><a href="mailto:hello@mall-explorer.com" className="hover:text-[#00BFA5] transition-colors">hello@mall-explorer.com</a></li>
+                <li><a href="https://mall-explorer.com/deck/" className="hover:text-[#00BFA5] transition-colors">Pitch Deck</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/60">
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-white/40">
               © 2026 Mall Explorer. All rights reserved.
             </p>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60">Available on</span>
-              <div className="flex gap-2">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-                  </svg>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
+            <p className="text-xs text-white/40">
+              Made in Abu Dhabi 🇦🇪
+            </p>
           </div>
         </div>
       </footer>
