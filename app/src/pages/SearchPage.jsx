@@ -117,7 +117,7 @@ export default function SearchPage() {
                     <div className="flex items-center justify-between p-3 rounded-xl glass-card hover:border-teal/30 transition-all">
                       <div>
                         <span className="font-display font-bold text-sm text-foreground">{deal.title}</span>
-                        <p className="text-xs text-muted-foreground">{deal.storeName} · Until {deal.validUntil}</p>
+                        <p className="text-xs text-muted-foreground">{deal.category} · Until {deal.endDate}</p>
                       </div>
                       <span className="text-teal font-display font-bold">{deal.discount}</span>
                     </div>

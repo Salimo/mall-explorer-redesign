@@ -52,8 +52,8 @@ export default function Deals() {
                   <h3 className="font-display text-base font-bold text-foreground">{deal.title}</h3>
                   <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{deal.description}</p>
                   <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><Store className="w-3 h-3 text-teal" />{deal.storeName}</span>
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />Until {deal.validUntil}</span>
+                    <span className="flex items-center gap-1"><Store className="w-3 h-3 text-teal" />{deal.category}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />Until {deal.endDate}</span>
                   </div>
                 </div>
               </div>

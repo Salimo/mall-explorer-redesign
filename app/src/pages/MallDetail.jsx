@@ -79,7 +79,7 @@ export default function MallDetail() {
           <h1 className="font-display text-2xl font-bold text-white">{mall.name}</h1>
           <div className="flex items-center gap-4 mt-1 text-sm text-white/70">
             <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-teal-light" />{mall.location}</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-teal-light" />{mall.openingHours}</span>
+            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-teal-light" />{mall.openingHours?.weekday || 'Hours N/A'}</span>
           </div>
         </div>
       </div>
@@ -237,7 +237,7 @@ export default function MallDetail() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-display font-bold text-sm text-foreground">{deal.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5">{deal.storeName} · Until {deal.validUntil}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{deal.category} · Until {deal.endDate}</p>
                   </div>
                 </div>
               ))}
