@@ -28,7 +28,7 @@ export default function LoginView({ onShowSignUp }) {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-teal mb-4">
-            <span className="text-navy font-display font-bold text-xl">M</span>
+            <span className="text-white font-display font-bold text-xl">M</span>
           </div>
           <h1 className="text-3xl font-bold text-foreground font-display">Mall Explorer</h1>
           <p className="text-muted-foreground mt-1 text-sm">Sign in to continue</p>
@@ -67,8 +67,8 @@ export default function LoginView({ onShowSignUp }) {
             </div>
           )}
 
-          <button type="submit" disabled={!email || !password || loading} className="w-full py-3.5 bg-teal text-navy font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]">
-            {loading ? <div className="w-5 h-5 border-2 border-navy/30 border-t-navy rounded-full animate-spin mx-auto" /> : 'Sign In'}
+          <button type="submit" disabled={!email || !password || loading} className="w-full py-3.5 bg-teal text-white font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]">
+            {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto" /> : 'Sign In'}
           </button>
         </form>
 

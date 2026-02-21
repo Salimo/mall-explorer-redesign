@@ -37,7 +37,7 @@ export default function Layout({ children, onShowProfile }) {
       <header className="sticky top-0 z-40 glass-card flex items-center justify-between px-4 py-3 border-b border-border/50">
         {/* Left: Logo and Text */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-teal text-navy font-display font-bold flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-teal text-white font-display font-bold flex items-center justify-center">
             M
           </div>
           <span className="hidden sm:block font-display font-bold">Mall Explorer</span>

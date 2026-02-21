@@ -24,7 +24,7 @@ export default function IndoorMap() {
   return (
     <div className={`flex flex-col h-screen bg-background ${fullscreen ? 'fixed inset-0 z-[70]' : ''}`}>
       {/* Top Bar */}
-      <div className="bg-card/90 backdrop-blur-lg border-b border-border/50 px-4 py-3 flex items-center justify-between flex-shrink-0">
+      <div className="bg-white/90 backdrop-blur-lg border-b border-border shadow-sm px-4 py-3 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-3">
           <Link href={`/mall/${mall.id}`}>
             <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors">
@@ -50,8 +50,8 @@ export default function IndoorMap() {
       <AnimatePresence>
         {showInfo && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden flex-shrink-0">
-            <div className="bg-teal/10 border-b border-teal/20 px-4 py-3">
-              <p className="text-sm text-teal">Use the interactive map below to find stores and get turn-by-turn directions inside {mall.name}. Tap on any store to see details and navigate.</p>
+            <div className="bg-teal/8 border-b border-teal/15 px-4 py-3">
+              <p className="text-sm text-teal-dark">Use the interactive map below to find stores and get turn-by-turn directions inside {mall.name}. Tap on any store to see details and navigate.</p>
             </div>
           </motion.div>
         )}

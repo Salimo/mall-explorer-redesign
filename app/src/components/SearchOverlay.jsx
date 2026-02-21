@@ -40,9 +40,9 @@ export default function SearchOverlay({ isOpen, onClose }) {
       setResults(searchResults);
       setLoading(false);
 
-      // Log search
+      // Log search event to Firestore (dashboard reads from search_events collection)
       if (logSearch) {
-        logSearch(query);
+        logSearch({ query, results: searchResults.stores || [], mallId: 'global' });
       }
     }, 300);
 
@@ -229,7 +229,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             <div className="flex-1">
                               <div className="font-medium text-sm">{deal.title}</div>
                               <div className="text-xs text-muted-foreground">
-                                {deal.storeName}
+                                {deal.category}
                               </div>
                             </div>
                             <span className="text-teal font-semibold text-sm whitespace-nowrap ml-2">
@@ -237,7 +237,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             </span>
                           </div>
                           <div className="text-xs text-muted-foreground mt-1">
-                            Valid until {deal.validUntil}
+                            Valid until {deal.endDate}
                           </div>
                         </motion.button>
                       ))}
