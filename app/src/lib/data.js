@@ -12,13 +12,13 @@ import {
   CATEGORY_CONFIG
 } from '../data/stores'
 
-// Image URLs for Unsplash placeholder images
+// Image URLs for mall preview images
 export const IMAGE_URLS = {
-  hero: 'https://images.unsplash.com/photo-1555529669-2269d7dd0c00?w=1200&h=600&fit=crop',
+  hero: '/images/abu-dhabi-mall.jpg',
   malls: {
-    'abu-dhabi-mall': 'https://images.unsplash.com/photo-1555529669-2269d7dd0c00?w=600&h=400&fit=crop',
-    'yas-mall': 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&h=400&fit=crop',
-    'al-wahda-mall': 'https://images.unsplash.com/photo-1519098901362-13baccc3c4e4?w=600&h=400&fit=crop'
+    'abu-dhabi-mall': '/images/abu-dhabi-mall.jpg',
+    'yas-mall': '/images/yas-mall.jpg',
+    'al-wahda-mall': '/images/al-wahda-mall.jpg'
   },
   events: {
     'ramadan-nights': 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop',
